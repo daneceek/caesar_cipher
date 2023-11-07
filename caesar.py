@@ -41,7 +41,7 @@ def folder_opening(input, output, shift):
             with open(output, "w") as output:
                 output.write(text)
     print()
-# alphabet = string.ascii_uppercase
+
 
 def caesar(text:str, key:int):
     text = text.upper()
