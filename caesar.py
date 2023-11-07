@@ -6,7 +6,7 @@ import click
 
 @click.command()
 @click.option("--method", "-m", help = "Vyberte metodu | encode nebo decode", type = str, required=True)
-@click.option("--files", "-f",  nargs = 2, required=True, help = "Zadejte cestu k souboru, který chcete dekódovat nebo enkódovat a jako druhý argument cestu k výstupu | pomlčka spustí stdin")
+@click.option("--files", "-f",  nargs = 2, required=True, help = "Jako první argument zadejte cestu k souboru, který chcete dekódovat nebo enkódovat a jako druhý argument cestu k výstupu | pomlčka spustí stdin nebo vypíše stdout")
 
 def main(method, files):
     
