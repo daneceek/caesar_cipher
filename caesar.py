@@ -6,7 +6,7 @@ import click
 
 @click.command()
 @click.option("--method", "-m", help = "Vyberte metodu | encode nebo decode", type = str, required=True)
-@click.option("--files", "-f",  nargs = 2, required=True, help = "Jako první argument zadejte cestu k souboru, který chcete dekódovat nebo enkódovat a jako druhý argument cestu k výstupu | pomlčka spustí stdin nebo vypíše stdout")
+@click.option("--files", "-f",  nargs = 2, required=True, help = "Zadejte cestu k souboru, který chcete dekódovat nebo enkódovat a jako druhý argument cestu k výstupu | pomlčka spustí stdin")
 
 def main(method, files):
     
@@ -16,7 +16,8 @@ def main(method, files):
         
     elif method == "decode":
         folder_opening(input, output, -3)
-        
+    else:
+        raise Exception("Nebyla zadána platná metoda. Existuje pouze 'encode' a 'decode'")
     print("Šifra dekóduje/enkóduje o tři písmena. Výsledný soubor byl vytvořen/výstup byl vypsán")
 def folder_opening(input, output, shift):
     if input == "-" and output == "-":
@@ -41,7 +42,7 @@ def folder_opening(input, output, shift):
             with open(output, "w") as output:
                 output.write(text)
     print()
-
+# alphabet = string.ascii_uppercase
 
 def caesar(text:str, key:int):
     text = text.upper()
@@ -50,6 +51,8 @@ def caesar(text:str, key:int):
     for char in text:
         if char == "\n":
             result += "\n"
+        if char == " ":
+            result += " "
         if char >= "A" and char <= "Z":
             position = ord(char) - 65 
             new_position = (position + key) % 26
